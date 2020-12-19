@@ -312,7 +312,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        lowLoadMovement = 
+        lightLoadMovement = 
         {
             pos       = {-1.328,0.1,0.580},
             rows      = 1,
@@ -322,7 +322,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        lowLoadMovementBonus = 
+        lightLoadMovementBonus = 
         {
             pos       = {-1.002,0.1,0.580},
             rows      = 1,
@@ -1314,6 +1314,57 @@ function onload(saved_data)
     createTextboxes()
 end
 
+-- calls to number with failsafe 0
+function toNumber0(value) 
+    local number = tonumber(value)
+    if number == nil then
+        return 0    
+    end
+    return number
+end    
+
+-- set all load checkboxes to false
+function resetLoadCheckboxes()
+    setCheckbox('noLoad', false)
+    setCheckbox('lightLoad', false)
+    setCheckbox('mediumLoad', false)
+    setCheckbox('heavyLoad', false)
+end
+
+-- checks if load is over the load value
+function isLoadOver(load, thresholdValue)
+    log('testing load ' .. load .. ' over ' .. thresholdValue)
+    return load > toNumber0(thresholdValue)
+end 
+
+-- recalculate all weight
+function recalculateWeight()
+    local o = ref_buttonData.textbox
+    local totalWeight = toNumber0(o.closeCombat01Weight.value) + toNumber0(o.closeCombat02Weight.value) + toNumber0(o.closeCombat03Weight.value) + toNumber0(o.closeCombat04Weight.value) + toNumber0(o.closeCombat05Weight.value) + 
+            toNumber0(o.rangedCombat01Weight.value) + toNumber0(o.rangedCombat02Weight.value) + toNumber0(o.rangedCombat03Weight.value) + toNumber0(o.rangedCombat04Weight.value) + toNumber0(o.rangedCombat05Weight.value);
+
+    resetLoadCheckboxes() 
+    if ( isLoadOver(totalWeight, ref_buttonData.textbox.heavyLoadMovement.value) ) then
+       setCheckbox('heavyLoad', true)
+    elseif ( isLoadOver(totalWeight, ref_buttonData.textbox.mediumLoadMovement.value) ) then 
+        setCheckbox('mediumLoad', true)
+    elseif ( isLoadOver(totalWeight, ref_buttonData.textbox.lightLoadMovement.value) ) then
+        setCheckbox('lightLoad', true)
+    else 
+        setCheckbox('noLoad', true)
+    end 
+
+    log("total weight " .. totalWeight);
+end
+
+-- event listener for a textbox update
+function onTextboxUpdate(key)
+    log("textbox update " .. key)
+    if ( string.match(key, 'Weight') ) then 
+        recalculateWeight()
+    end
+end
+
 --Helper bruteforce function to get map index
 function getIndex(object, key, offset)
     local index = 0
@@ -1325,22 +1376,25 @@ function getIndex(object, key, offset)
     end 
 end
 
+-- sets checkbox to desired state
+function setCheckbox(key, newState)
+    local char
+    if newState then 
+        char = string.char(10008)
+    else 
+        char = ""
+    end
+
+    ref_buttonData.checkbox[key].state = newState
+    i = getIndex(ref_buttonData.checkbox, key, checkboxButtonStartIndex)
+    self.editButton({index=i, label=char})
+    updateSave()
+end 
+
 --Checks or unchecks the given box
 function click_checkbox(key)
-    --ref_buttonData.checkbox.noLoad.state = true
-    state = ref_buttonData.checkbox[key].state;
-    local char
-    if state then 
-        char = ""
-    else 
-        char = string.char(10008)
-    end
-    ref_buttonData.checkbox[key].state = not(state)
-    i = getIndex(ref_buttonData.checkbox, key, checkboxButtonStartIndex)
-    
-    self.editButton({index=i, label=char})
-
-    updateSave()
+    local state = ref_buttonData.checkbox[key].state;
+    setCheckbox(key, state) 
 end
 
 --Applies value to given counter display
@@ -1354,8 +1408,10 @@ end
 
 --Updates saved value for given text box
 function click_textbox(key, value, selected)
+    log('clicking textbox ' .. key)
     if selected == false then
         ref_buttonData.textbox[key].value = value
+        onTextboxUpdate(key)
         updateSave()
     end
 end
