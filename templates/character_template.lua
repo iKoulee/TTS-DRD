@@ -72,24 +72,28 @@ defaultButtonData = {
         state = default starting value for checkbox (true=checked, false=not)
         ]]
         --First checkbox
+        noLoad =
         {
             pos   = {-1.575,0.1,0.36},
             size  = 500,
             state = false
         },
         --Second checkbox
+        lightLoad = 
         {
             pos   = {-1.575,0.1,0.555},
             size  = 500,
             state = false
         },
         --Third checkbox
+        mediumLoad = 
         {
             pos   = {-1.575,0.1,0.75},
             size  = 500,
             state = false
         },
         --Third checkbox
+        heavyLoad =
         {
             pos   = {-1.575,0.1,0.945},
             size  = 500,
@@ -1297,27 +1301,41 @@ function onload(saved_data)
         ref_buttonData = defaultButtonData
     end
 
+    --reset FIMXE run on data structure change
+    --ref_buttonData = defaultButtonData
+
     spawnedButtonCount = 0
-    createCheckbox()
+    createCheckboxes()
     createCounter()
     createTextbox()
 end
 
-
-
---Click functions for buttons
-
-
+--Helper bruteforce function to get map index
+function getIndex(object, key)
+    local index = 0
+    for k in pairs(object) do
+        if ( key == k ) then
+            return index
+        end
+        index = index + 1
+    end 
+end
 
 --Checks or unchecks the given box
-function click_checkbox(tableIndex, buttonIndex)
-    if ref_buttonData.checkbox[tableIndex].state == true then
-        ref_buttonData.checkbox[tableIndex].state = false
-        self.editButton({index=buttonIndex, label=""})
-    else
-        ref_buttonData.checkbox[tableIndex].state = true
-        self.editButton({index=buttonIndex, label=string.char(10008)})
+function click_checkbox(key)
+    --ref_buttonData.checkbox.noLoad.state = true
+    state = ref_buttonData.checkbox[key].state;
+    local char
+    if state then 
+        char = ""
+    else 
+        char = string.char(10008)
     end
+    ref_buttonData.checkbox[key].state = not(state)
+    i = getIndex(ref_buttonData.checkbox, key)
+    
+    self.editButton({index=i, label=char})
+
     updateSave()
 end
 
@@ -1343,28 +1361,34 @@ function click_none() end
 
 --Button creation
 
-
+function createCheckbox(data, key)
+--Sets up reference function
+    local buttonNumber = spawnedButtonCount
+    local funcName = "checkbox"..key
+    local func = function() click_checkbox(key) end
+    self.setVar(funcName, func)
+    --Sets up label
+    local label = ""
+    if data.state==true then label=string.char(10008) end
+    --Creates button and counts it
+    self.createButton({
+        label=label, click_function=funcName, function_owner=self,
+        position=data.pos, height=data.size, width=data.size,
+        font_size=data.size, scale=buttonScale,
+        color=buttonColor, font_color=buttonFontColor
+    })
+    spawnedButtonCount = spawnedButtonCount + 1
+end
 
 --Makes checkboxes
-function createCheckbox()
-    for i, data in ipairs(ref_buttonData.checkbox) do
-        --Sets up reference function
-        local buttonNumber = spawnedButtonCount
-        local funcName = "checkbox"..i
-        local func = function() click_checkbox(i, buttonNumber) end
-        self.setVar(funcName, func)
-        --Sets up label
-        local label = ""
-        if data.state==true then label=string.char(10008) end
-        --Creates button and counts it
-        self.createButton({
-            label=label, click_function=funcName, function_owner=self,
-            position=data.pos, height=data.size, width=data.size,
-            font_size=data.size, scale=buttonScale,
-            color=buttonColor, font_color=buttonFontColor
-        })
-        spawnedButtonCount = spawnedButtonCount + 1
-    end
+function createCheckboxes()
+    local object = ref_buttonData.checkbox
+    local index = 0 
+    
+    for key in pairs(object) do
+        createCheckbox(object[key], key, index)
+        index = index + 1
+    end 
 end
 
 --Makes counters
