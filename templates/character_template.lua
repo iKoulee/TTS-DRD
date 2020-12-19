@@ -12,7 +12,7 @@ Step 1) Change the character sheet image
 Step 2) Edit script to fit your character sheet
     -Below you will see some general options, and then the big data table
     -The data table is what determines how many of which buttons are made
-        -1es
+        -Textboxes
         -Counters
         -Textboxes
     -By default, there are 3 of each. You can add more or remove entries
@@ -62,6 +62,10 @@ buttonColor = {1,1,1}
 --Change scale of button (Avoid changing if possible)
 buttonScale = {0.1,0.1,0.1}
 
+--ButtonIndices
+checkboxButtonStartIndex = 0
+counterButtonIndex = {}
+
 --This is the button placement information
 defaultButtonData = {
     --Add checkboxes
@@ -109,14 +113,14 @@ defaultButtonData = {
         value  = default starting value for counter
         hideBG = if background of counter is hidden (true=hidden, false=not)
         ]]
-        --First counter
+        hp = --First counter
         {
             pos    = {0.22,0.1,-1.188},
             size   = 750,
             value  = 0,
             hideBG = false
         },
-        --Second counter
+        mana = --Second counter
         {
             pos    = {0.22,0.1,-1.385},
             size   = 750,
@@ -1302,20 +1306,20 @@ function onload(saved_data)
     end
 
     --reset FIMXE run on data structure change
-    --ref_buttonData = defaultButtonData
+    ref_buttonData = defaultButtonData
 
     spawnedButtonCount = 0
     createCheckboxes()
-    createCounter()
+    createCounters()
     createTextboxes()
 end
 
 --Helper bruteforce function to get map index
-function getIndex(object, key)
+function getIndex(object, key, offset)
     local index = 0
     for k in pairs(object) do
         if ( key == k ) then
-            return index
+            return index + offset
         end
         index = index + 1
     end 
@@ -1332,7 +1336,7 @@ function click_checkbox(key)
         char = string.char(10008)
     end
     ref_buttonData.checkbox[key].state = not(state)
-    i = getIndex(ref_buttonData.checkbox, key)
+    i = getIndex(ref_buttonData.checkbox, key, checkboxButtonStartIndex)
     
     self.editButton({index=i, label=char})
 
@@ -1340,9 +1344,11 @@ function click_checkbox(key)
 end
 
 --Applies value to given counter display
-function click_counter(tableIndex, buttonIndex, amount)
-    ref_buttonData.counter[tableIndex].value = ref_buttonData.counter[tableIndex].value + amount
-    self.editButton({index=buttonIndex, label=ref_buttonData.counter[tableIndex].value})
+function click_counter(key, amount)
+    ref_buttonData.counter[key].value = ref_buttonData.counter[key].value + amount
+    i = counterButtonIndex
+[key]
+    self.editButton({index=i, label=ref_buttonData.counter[key].value})
     updateSave()
 end
 
@@ -1358,67 +1364,67 @@ end
 function click_none() end
 
 --Makes counters
-function createCounter()
-    for i, data in ipairs(ref_buttonData.counter) do
-        --Sets up display
-        local displayNumber = spawnedButtonCount
-        --Sets up label
-        local label = data.value
-        --Sets height/width for display
-        local size = data.size
-        if data.hideBG == true then size = 0 end
-        --Creates button and counts it
-        self.createButton({
-            label=label, click_function="click_none", function_owner=self,
-            position=data.pos, height=size, width=size,
-            font_size=data.size, scale=buttonScale,
-            color=buttonColor, font_color=buttonFontColor
-        })
-        spawnedButtonCount = spawnedButtonCount + 1
+function createCounter(data, key)
+    --Sets up button offset
+    log('counter offset ' .. key .. ' is ' .. spawnedButtonCount)
+    counterButtonIndex
+[key] = spawnedButtonCount
+    --Sets up label
+    local label = data.value
+    --Sets height/width for display
+    local size = data.size
+    if data.hideBG == true then size = 0 end
+    --Creates button and counts it
+    self.createButton({
+        label=label, click_function="click_none", function_owner=self,
+        position=data.pos, height=size, width=size,
+        font_size=data.size, scale=buttonScale,
+        color=buttonColor, font_color=buttonFontColor
+    })
+    spawnedButtonCount = spawnedButtonCount + 1
 
-        --Sets up add 1
-        local funcName = "counterAdd"..i
-        local func = function() click_counter(i, displayNumber, 1) end
-        self.setVar(funcName, func)
-        --Sets up label
-        local label = "+"
-        --Sets up position
-        local offsetDistance = (data.size/2 + data.size/4) * (buttonScale[1] * 0.002)
-        local pos = {data.pos[1] + offsetDistance, data.pos[2], data.pos[3]}
-        --Sets up size
-        local size = data.size / 2
-        --Creates button and counts it
-        self.createButton({
-            label=label, click_function=funcName, function_owner=self,
-            position=pos, height=size, width=size,
-            font_size=size, scale=buttonScale,
-            color=buttonColor, font_color=buttonFontColor
-        })
-        spawnedButtonCount = spawnedButtonCount + 1
+    --Sets up add 1
+    local funcName = "counterAdd"..key
+    local func = function() click_counter(key, 1) end
+    self.setVar(funcName, func)
+    --Sets up label
+    local label = "+"
+    --Sets up position
+    local offsetDistance = (data.size/2 + data.size/4) * (buttonScale[1] * 0.002)
+    local pos = {data.pos[1] + offsetDistance, data.pos[2], data.pos[3]}
+    --Sets up size
+    local size = data.size / 2
+    --Creates button and counts it
+    self.createButton({
+        label=label, click_function=funcName, function_owner=self,
+        position=pos, height=size, width=size,
+        font_size=size, scale=buttonScale,
+        color=buttonColor, font_color=buttonFontColor
+    })
+    spawnedButtonCount = spawnedButtonCount + 1
 
-        --Sets up subtract 1
-        local funcName = "counterSub"..i
-        local func = function() click_counter(i, displayNumber, -1) end
-        self.setVar(funcName, func)
-        --Sets up label
-        local label = "-"
-        --Set up position
-        local pos = {data.pos[1] - offsetDistance, data.pos[2], data.pos[3]}
-        --Creates button and counts it
-        self.createButton({
-            label=label, click_function=funcName, function_owner=self,
-            position=pos, height=size, width=size,
-            font_size=size, scale=buttonScale,
-            color=buttonColor, font_color=buttonFontColor
-        })
-        spawnedButtonCount = spawnedButtonCount + 1
-    end
+    --Sets up subtract 1
+    local funcName = "counterSub"..key
+    local func = function() click_counter(key, -1) end
+    self.setVar(funcName, func)
+    --Sets up label
+    local label = "-"
+    --Set up position
+    local pos = {data.pos[1] - offsetDistance, data.pos[2], data.pos[3]}
+    --Creates button and counts it
+    self.createButton({
+        label=label, click_function=funcName, function_owner=self,
+        position=pos, height=size, width=size,
+        font_size=size, scale=buttonScale,
+        color=buttonColor, font_color=buttonFontColor
+    })
+    spawnedButtonCount = spawnedButtonCount + 1
 end
 
 -- creates single checkbox
 function createCheckbox(data, key)
 --Sets up reference function
-    local buttonNumber = spawnedButtonCount
+    
     local funcName = "checkbox"..key
     local func = function() click_checkbox(key) end
     self.setVar(funcName, func)
@@ -1458,6 +1464,14 @@ function createTextbox(data, key)
     })
 end
 
+function createCounters()
+    local object = ref_buttonData.counter
+    
+    for key in pairs(object) do
+        createCounter(object[key], key)
+    end
+end 
+
 --Creates every textbox
 function createTextboxes()
     local object = ref_buttonData.textbox
@@ -1469,6 +1483,9 @@ end
 
 --Makes checkboxes
 function createCheckboxes()
+    --sets up checkbox start offset
+    checkboxButtonStartIndex = spawnedButtonCount
+
     local object = ref_buttonData.checkbox
     
     for key in pairs(object) do
