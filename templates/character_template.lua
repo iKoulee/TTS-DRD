@@ -12,7 +12,7 @@ Step 1) Change the character sheet image
 Step 2) Edit script to fit your character sheet
     -Below you will see some general options, and then the big data table
     -The data table is what determines how many of which buttons are made
-        -Checkboxes
+        -1es
         -Counters
         -Textboxes
     -By default, there are 3 of each. You can add more or remove entries
@@ -138,7 +138,7 @@ defaultButtonData = {
         alignment = Number to indicate how you want text aligned
                     (1=Automatic, 2=Left, 3=Center, 4=Right, 5=Justified)
         ]]
-        --Jmeno
+        name = 
         {
             pos       = {-1.49,0.1,-1.492},
             rows      = 1,
@@ -148,7 +148,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --Rasa
+        race = 
         {
             pos       = {-1.82,0.1,-1.295},
             rows      = 1,
@@ -158,7 +158,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --Povolani
+        occupation =
         {
             pos       = {-1.16,0.1,-1.295},
             rows      = 1,
@@ -168,7 +168,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-        --Sila
+        strength = 
         {
             pos       = {-1.328,0.1,-1.06},
             rows      = 1,
@@ -178,7 +178,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --Sila - bonus
+        strengthBonus = 
         {
             pos       = {-1.002,0.1,-1.06},
             rows      = 1,
@@ -188,7 +188,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --Obratnost
+        dexterity = 
         {
             pos       = {-1.328,0.1,-0.865},
             rows      = 1,
@@ -198,7 +198,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --Obratnost - bonus
+        dexterityBonus = 
         {
             pos       = {-1.002,0.1,-0.865},
             rows      = 1,
@@ -208,7 +208,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --Odolnost
+        endurance = 
         {
             pos       = {-1.328,0.1,-0.67},
             rows      = 1,
@@ -218,7 +218,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --Odolnost - bonus
+        enduranceBonus = 
         {
             pos       = {-1.002,0.1,-0.67},
             rows      = 1,
@@ -228,7 +228,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --Inteligence
+        intelligence = 
         {
             pos       = {-1.328,0.1,-0.475},
             rows      = 1,
@@ -238,7 +238,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --Inteligence - bonus
+        intelligenceBonus = 
         {
             pos       = {-1.002,0.1,-0.475},
             rows      = 1,
@@ -248,7 +248,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --Charisma
+        charisma = 
         {
             pos       = {-1.328,0.1,-0.28},
             rows      = 1,
@@ -258,7 +258,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --Charisma - bonus
+        charismaBonus = 
         {
             pos       = {-1.002,0.1,-0.28},
             rows      = 1,
@@ -268,7 +268,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-         --Uroven
+        level = 
         {
             pos       = {-1.16,0.1,-0.05},
             rows      = 1,
@@ -278,7 +278,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --Zkusenost
+        experience = 
         {
             pos       = {-1.16,0.1,0.145},
             rows      = 1,
@@ -288,7 +288,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-        --Pohyblivost_zadne
+        noLoadMovement =
         {
             pos       = {-1.328,0.1,0.385},
             rows      = 1,
@@ -298,7 +298,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --Pohyblivost_zadne - bonus
+        noLoadMovementBonus =
         {
             pos       = {-1.002,0.1,0.385},
             rows      = 1,
@@ -308,7 +308,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --Pohyblivost_mirne
+        lowLoadMovement = 
         {
             pos       = {-1.328,0.1,0.580},
             rows      = 1,
@@ -318,7 +318,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --Pohyblivost_mirne - bonus
+        lowLoadMovementBonus = 
         {
             pos       = {-1.002,0.1,0.580},
             rows      = 1,
@@ -328,7 +328,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --Pohyblivost_stredni
+        mediumLoadMovement = 
         {
             pos       = {-1.328,0.1,0.775},
             rows      = 1,
@@ -338,7 +338,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --Pohyblivost_stredni - bonus
+        lowLoadMovementBonus = 
         {
             pos       = {-1.002,0.1,0.775},
             rows      = 1,
@@ -348,7 +348,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --Pohyblivost_velke
+        heavyLoadMovement =
         {
             pos       = {-1.328,0.1,0.970},
             rows      = 1,
@@ -358,7 +358,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --Pohyblivost_velke - bonus
+        heavyLoadMovementBonus = 
         {
             pos       = {-1.002,0.1,0.970},
             rows      = 1,
@@ -368,7 +368,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --Postreh_nahodny_objekt
+        perceptionRandomObject = 
         {
             pos       = {-1.328,0.1,1.3},
             rows      = 1,
@@ -378,7 +378,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --Postreh_nahodny_mechanismus
+        perceptionRandomMechanism = 
         {
             pos       = {-1.002,0.1,1.3},
             rows      = 1,
@@ -388,7 +388,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --Postreh_hledany_objekt
+        perceptionSearchedObject = 
         {
             pos       = {-1.328,0.1,1.495},
             rows      = 1,
@@ -398,7 +398,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --Postreh_hledany_mechanismus
+        perceptionSearchedMechanism = 
         {
             pos       = {-1.002,0.1,1.495},
             rows      = 1,
@@ -409,7 +409,7 @@ defaultButtonData = {
             alignment = 3
         },
 
-        --Zivoty_max
+        hpMax = 
         {
             pos       = {-0.190,0.1,-1.385},
             rows      = 1,
@@ -420,7 +420,7 @@ defaultButtonData = {
             alignment = 3
         },
 
-        --Mana_max
+        manaMax = 
         {
             pos       = {-0.190,0.1,-1.188},
             rows      = 1,
@@ -430,7 +430,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-         --Obranne_cislo_zaklad
+        defenseNumberBase = 
         {
             pos       = {1.71,0.1,-1.382},
             rows      = 1,
@@ -440,7 +440,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --Obranne_cislo_podrobnosti
+        defenseNumberDetails = 
         {
             pos       = {1.331,0.1,-1.1872},
             rows      = 2,
@@ -470,7 +470,7 @@ defaultButtonData = {
 ]]
 --Souboj tvari v tvar
 --------------------------------------------------
-         --UC_btvt_zbran_01
+        closeCombat01Name = --UC_btvt_zbran_01
         {
             pos       = {-0.374,0.1,-0.648},
             rows      = 2,
@@ -480,7 +480,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_kde_01
+        closeCombat01Location = --UC_btvt_kde_01
         {
             pos       = {0.168,0.1,-0.648},
             rows      = 2,
@@ -490,7 +490,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_UC_01
+        closeCombat01AttackNumber = --UC_btvt_UC_01
         {
             pos       = {0.461,0.1,-0.648},
             rows      = 2,
@@ -500,7 +500,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_Utoc_01
+        closeCombat01Attack = --UC_btvt_Utoc_01
         {
             pos       = {0.726,0.1,-0.648},
             rows      = 1,
@@ -510,7 +510,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_OZ_01
+        closeCombat01Defense = --UC_btvt_OZ_01
         {
             pos       = {0.965,0.1,-0.648},
             rows      = 1,
@@ -520,7 +520,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_Vlastnosti_01
+        closeCombat01Properties = --UC_btvt_Vlastnosti_01
         {
             pos       = {1.46,0.1,-0.648},
             rows      = 2,
@@ -530,7 +530,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_Vaha_01
+        closeCombat01Weight = --UC_btvt_Vaha_01
         {
             pos       = {1.979,0.1,-0.648},
             rows      = 1,
@@ -541,7 +541,7 @@ defaultButtonData = {
             alignment = 3,
         },
 --------------------------------------------------
-         --UC_btvt_zbran_02
+        closeCombat02Name = --UC_btvt_zbran_02
         {
             pos       = {-0.374,0.1,-0.451},
             rows      = 2,
@@ -551,7 +551,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_kde_02
+        closeCombat02Location = --UC_btvt_kde_02
         {
             pos       = {0.168,0.1,-0.451},
             rows      = 2,
@@ -561,7 +561,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_UC_02
+        closeCombat02AttackNumber =  --UC_btvt_UC_02
         {
             pos       = {0.461,0.1,-0.451},
             rows      = 2,
@@ -571,7 +571,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_Utoc_02
+        closeCombat02Attack =  --UC_btvt_Utoc_02
         {
             pos       = {0.726,0.1,-0.451},
             rows      = 1,
@@ -581,7 +581,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_OZ_02
+        closeCombat02Defense =  --UC_btvt_OZ_02
         {
             pos       = {0.965,0.1,-0.451},
             rows      = 1,
@@ -591,7 +591,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_Vlastnosti_02
+        closeCombat02Properties =  --UC_btvt_Vlastnosti_02
         {
             pos       = {1.46,0.1,-0.451},
             rows      = 2,
@@ -601,7 +601,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_Vaha_02
+        closeCombat02Weight =  --UC_btvt_Vaha_02
         {
             pos       = {1.979,0.1,-0.451},
             rows      = 1,
@@ -612,7 +612,7 @@ defaultButtonData = {
             alignment = 3,
         },
 --------------------------------------------------
-         --UC_btvt_zbran_03
+        closeCombat03Name = --UC_btvt_zbran_03
         {
             pos       = {-0.374,0.1,-0.255},
             rows      = 2,
@@ -622,7 +622,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_kde_03
+        closeCombat03Location =  --UC_btvt_kde_03
         {
             pos       = {0.168,0.1,-0.255},
             rows      = 2,
@@ -632,7 +632,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_UC_03
+        closeCombat03AttackNumber =  --UC_btvt_UC_03
         {
             pos       = {0.461,0.1,-0.255},
             rows      = 2,
@@ -642,7 +642,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_Utoc_03
+        closeCombat03Attack =  --UC_btvt_Utoc_03
         {
             pos       = {0.726,0.1,-0.255},
             rows      = 1,
@@ -652,7 +652,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_OZ_03
+        closeCombat03Defense =  --UC_btvt_OZ_03
         {
             pos       = {0.965,0.1,-0.255},
             rows      = 1,
@@ -662,7 +662,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_Vlastnosti_03
+        closeCombat03Properties =  --UC_btvt_Vlastnosti_03
         {
             pos       = {1.46,0.1,-0.255},
             rows      = 2,
@@ -672,7 +672,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_Vaha_03
+        closeCombat03Weight =  --UC_btvt_Vaha_03
         {
             pos       = {1.979,0.1,-0.255},
             rows      = 1,
@@ -683,7 +683,7 @@ defaultButtonData = {
             alignment = 3,
         },
 --------------------------------------------------
-         --UC_btvt_zbran_04
+        closeCombat04Name =  --UC_btvt_zbran_04
         {
             pos       = {-0.374,0.1,-0.059},
             rows      = 2,
@@ -693,7 +693,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_kde_04
+        closeCombat04Location =  --UC_btvt_kde_04
         {
             pos       = {0.168,0.1,-0.059},
             rows      = 2,
@@ -703,7 +703,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_UC_04
+        closeCombat04AttackNumber =  --UC_btvt_UC_04
         {
             pos       = {0.461,0.1,-0.059},
             rows      = 2,
@@ -713,7 +713,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_Utoc_04
+        closeCombat04Attack =  --UC_btvt_Utoc_04
         {
             pos       = {0.726,0.1,-0.059},
             rows      = 1,
@@ -723,7 +723,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_OZ_04
+        closeCombat04Defense =  --UC_btvt_OZ_04
         {
             pos       = {0.965,0.1,-0.059},
             rows      = 1,
@@ -733,7 +733,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_Vlastnosti_04
+        closeCombat04Properties =  --UC_btvt_Vlastnosti_04
         {
             pos       = {1.46,0.1,-0.059},
             rows      = 2,
@@ -743,7 +743,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_Vaha_04
+        closeCombat04Weight =  --UC_btvt_Vaha_04
         {
             pos       = {1.979,0.1,-0.059},
             rows      = 1,
@@ -754,7 +754,7 @@ defaultButtonData = {
             alignment = 3,
         },
 --------------------------------------------------
-         --UC_btvt_zbran_05
+        closeCombat05Name = --UC_btvt_zbran_05
         {
             pos       = {-0.374,0.1,0.137},
             rows      = 2,
@@ -764,7 +764,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_kde_05
+        closeCombat03Location =  --UC_btvt_kde_05
         {
             pos       = {0.168,0.1,0.137},
             rows      = 2,
@@ -774,7 +774,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_UC_05
+        closeCombat05AttackNumber =  --UC_btvt_UC_05
         {
             pos       = {0.461,0.1,0.137},
             rows      = 2,
@@ -784,7 +784,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_Utoc_05
+        closeCombat05Attack =  --UC_btvt_Utoc_05
         {
             pos       = {0.726,0.1,0.137},
             rows      = 1,
@@ -794,7 +794,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_OZ_05
+        closeCombat05Defense =  --UC_btvt_OZ_05
         {
             pos       = {0.965,0.1,0.137},
             rows      = 1,
@@ -804,7 +804,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_Vlastnosti_05
+        closeCombat05Properties =  --UC_btvt_Vlastnosti_05
         {
             pos       = {1.46,0.1,0.137},
             rows      = 2,
@@ -814,7 +814,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_btvt_Vaha_05
+        closeCombat05Weight =  --UC_btvt_Vaha_05
         {
             pos       = {1.979,0.1,0.137},
             rows      = 1,
@@ -869,7 +869,7 @@ defaultButtonData = {
 ]]
 --Souboj na dalku
 --------------------------------------------------
-         --UC_snd_zbran_01
+        rangedCombat01Name = --UC_snd_zbran_01
         {
             pos       = {-0.4335,0.1,0.711},
             rows      = 2,
@@ -879,7 +879,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_kde_01
+        rangedCombat01Location =  --UC_snd_kde_01
         {
             pos       = {0.048,0.1,0.711},
             rows      = 2,
@@ -889,7 +889,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_UC_01
+        rangedCombat01AttackNumber = --UC_snd_UC_01
         {
             pos       = {0.342,0.1,0.711},
             rows      = 2,
@@ -899,7 +899,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_Utoc_01
+        rangedCombat01Attack = --UC_snd_Utoc_01
         {
             pos       = {0.618,0.1,0.711},
             rows      = 1,
@@ -909,7 +909,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_Dostrel_01
+        rangedCombat01Range =  --UC_snd_Dostrel_01
         {
             pos       = {0.916,0.1,0.711},
             rows      = 1,
@@ -919,7 +919,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_OZ_01
+        rangedCombat01Defense = --UC_snd_OZ_01
         {
             pos       = {1.202,0.1,0.711},
             rows      = 1,
@@ -929,7 +929,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_Vlastnosti_01
+        rangedCombat01Properties =  --UC_snd_Vlastnosti_01
         {
             pos       = {1.6052,0.1,0.711},
             rows      = 2,
@@ -939,7 +939,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_Vaha_01
+        rangedCombat01Weight = --UC_snd_Vaha_01
         {
             pos       = {2.005,0.1,0.711},
             rows      = 1,
@@ -950,7 +950,7 @@ defaultButtonData = {
             alignment = 3,
         },
 --------------------------------------------------
-         --UC_snd_zbran_02
+        rangedCombat02Name =  --UC_snd_zbran_02
         {
             pos       = {-0.4335,0.1,0.907},
             rows      = 2,
@@ -960,7 +960,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_kde_02
+        rangedCombat02Location =  --UC_snd_kde_02
         {
             pos       = {0.048,0.1,0.907},
             rows      = 2,
@@ -970,7 +970,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_UC_02
+        rangedCombat02AttackNumber =  --UC_snd_UC_02
         {
             pos       = {0.342,0.1,0.907},
             rows      = 2,
@@ -980,7 +980,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_Utoc_02
+        rangedCombat02Attack =  --UC_snd_Utoc_02
         {
             pos       = {0.618,0.1,0.907},
             rows      = 1,
@@ -990,7 +990,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_Dostrel_02
+        rangedCombat02Range =  --UC_snd_Dostrel_02
         {
             pos       = {0.916,0.1,0.907},
             rows      = 1,
@@ -1000,7 +1000,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_OZ_02
+        rangedCombat02Defense =  --UC_snd_OZ_02
         {
             pos       = {1.202,0.1,0.907},
             rows      = 1,
@@ -1010,7 +1010,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_Vlastnosti_02
+        rangedCombat02Properties =   --UC_snd_Vlastnosti_02
         {
             pos       = {1.6052,0.1,0.907},
             rows      = 2,
@@ -1020,7 +1020,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_Vaha_02
+        rangedCombat02Weight =  --UC_snd_Vaha_02
         {
             pos       = {2.005,0.1,0.907},
             rows      = 1,
@@ -1031,7 +1031,7 @@ defaultButtonData = {
             alignment = 3,
         },
 --------------------------------------------------
-         --UC_snd_zbran_03
+        rangedCombat03Name =  --UC_snd_zbran_03
         {
             pos       = {-0.4335,0.1,1.103},
             rows      = 2,
@@ -1041,7 +1041,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_kde_03
+        rangedCombat03Location =  --UC_snd_kde_03
         {
             pos       = {0.048,0.1,1.103},
             rows      = 2,
@@ -1051,7 +1051,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_UC_03
+        rangedCombat03AttackNumber =  --UC_snd_UC_03
         {
             pos       = {0.342,0.1,1.103},
             rows      = 2,
@@ -1061,7 +1061,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_Utoc_03
+        rangedCombat03Attack =  --UC_snd_Utoc_03
         {
             pos       = {0.618,0.1,1.103},
             rows      = 1,
@@ -1071,7 +1071,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_Dostrel_03
+        rangedCombat03Range =  --UC_snd_Dostrel_03
         {
             pos       = {0.916,0.1,1.103},
             rows      = 1,
@@ -1081,7 +1081,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_OZ_03
+        rangedCombat03Defense =  --UC_snd_OZ_03
         {
             pos       = {1.202,0.1,1.103},
             rows      = 1,
@@ -1091,7 +1091,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_Vlastnosti_03
+        rangedCombat03Properties =   --UC_snd_Vlastnosti_03
         {
             pos       = {1.6052,0.1,1.103},
             rows      = 2,
@@ -1101,7 +1101,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_Vaha_03
+        rangedCombat03Weight =  --UC_snd_Vaha_03
         {
             pos       = {2.005,0.1,1.103},
             rows      = 1,
@@ -1112,7 +1112,7 @@ defaultButtonData = {
             alignment = 3,
         },
 --------------------------------------------------
-         --UC_snd_zbran_04
+        rangedCombat04Name =  --UC_snd_zbran_04
         {
             pos       = {-0.4335,0.1,1.299},
             rows      = 2,
@@ -1122,7 +1122,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_kde_04
+        rangedCombat04Location =  --UC_snd_kde_04
         {
             pos       = {0.048,0.1,1.299},
             rows      = 2,
@@ -1132,7 +1132,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_UC_04
+        rangedCombat04AttackNumber =  --UC_snd_UC_04
         {
             pos       = {0.342,0.1,1.299},
             rows      = 2,
@@ -1142,7 +1142,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_Utoc_04
+        rangedCombat04Attack =  --UC_snd_Utoc_04
         {
             pos       = {0.618,0.1,1.299},
             rows      = 1,
@@ -1152,7 +1152,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_Dostrel_04
+        rangedCombat04Range =  --UC_snd_Dostrel_04
         {
             pos       = {0.916,0.1,1.299},
             rows      = 1,
@@ -1162,7 +1162,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_OZ_04
+        rangedCombat04Defense =  --UC_snd_OZ_04
         {
             pos       = {1.202,0.1,1.299},
             rows      = 1,
@@ -1172,7 +1172,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_Vlastnosti_04
+        rangedCombat04Properties =   --UC_snd_Vlastnosti_04
         {
             pos       = {1.6052,0.1,1.299},
             rows      = 2,
@@ -1182,7 +1182,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_Vaha_04
+        rangedCombat04Weight =  --UC_snd_Vaha_04
         {
             pos       = {2.005,0.1,1.299},
             rows      = 1,
@@ -1193,7 +1193,7 @@ defaultButtonData = {
             alignment = 3,
         },
 --------------------------------------------------
-         --UC_snd_zbran_05
+        rangedCombat05Name =  --UC_snd_zbran_05
         {
             pos       = {-0.4335,0.1,1.495},
             rows      = 2,
@@ -1203,7 +1203,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_kde_05
+        rangedCombat05Location =  --UC_snd_kde_05
         {
             pos       = {0.048,0.1,1.495},
             rows      = 2,
@@ -1213,7 +1213,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_UC_05
+        rangedCombat05AttackNumber =  --UC_snd_UC_05
         {
             pos       = {0.342,0.1,1.495},
             rows      = 2,
@@ -1223,7 +1223,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_Utoc_05
+        rangedCombat05Attack =  --UC_snd_Utoc_05
         {
             pos       = {0.618,0.1,1.495},
             rows      = 1,
@@ -1233,7 +1233,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_Dostrel_05
+        rangedCombat05Range =  --UC_snd_Dostrel_05
         {
             pos       = {0.916,0.1,1.495},
             rows      = 1,
@@ -1243,7 +1243,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_OZ_05
+        rangedCombat05Defense =  --UC_snd_OZ_05
         {
             pos       = {1.202,0.1,1.495},
             rows      = 1,
@@ -1253,7 +1253,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_Vlastnosti_05
+        rangedCombat05Properties =   --UC_snd_Vlastnosti_05
         {
             pos       = {1.6052,0.1,1.495},
             rows      = 2,
@@ -1263,7 +1263,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-         --UC_snd_Vaha_05
+        rangedCombat05Weight =  --UC_snd_Vaha_05
         {
             pos       = {2.005,0.1,1.495},
             rows      = 1,
@@ -1302,12 +1302,12 @@ function onload(saved_data)
     end
 
     --reset FIMXE run on data structure change
-    --ref_buttonData = defaultButtonData
+    ref_buttonData = defaultButtonData
 
     spawnedButtonCount = 0
     createCheckboxes()
     createCounter()
-    createTextbox()
+    createTextboxes()
 end
 
 --Helper bruteforce function to get map index
@@ -1347,49 +1347,15 @@ function click_counter(tableIndex, buttonIndex, amount)
 end
 
 --Updates saved value for given text box
-function click_textbox(i, value, selected)
+function click_textbox(key, value, selected)
     if selected == false then
-        ref_buttonData.textbox[i].value = value
+        ref_buttonData.textbox[key].value = value
         updateSave()
     end
 end
 
 --Dud function for if you have a background on a counter
 function click_none() end
-
-
-
---Button creation
-
-function createCheckbox(data, key)
---Sets up reference function
-    local buttonNumber = spawnedButtonCount
-    local funcName = "checkbox"..key
-    local func = function() click_checkbox(key) end
-    self.setVar(funcName, func)
-    --Sets up label
-    local label = ""
-    if data.state==true then label=string.char(10008) end
-    --Creates button and counts it
-    self.createButton({
-        label=label, click_function=funcName, function_owner=self,
-        position=data.pos, height=data.size, width=data.size,
-        font_size=data.size, scale=buttonScale,
-        color=buttonColor, font_color=buttonFontColor
-    })
-    spawnedButtonCount = spawnedButtonCount + 1
-end
-
---Makes checkboxes
-function createCheckboxes()
-    local object = ref_buttonData.checkbox
-    local index = 0 
-    
-    for key in pairs(object) do
-        createCheckbox(object[key], key, index)
-        index = index + 1
-    end 
-end
 
 --Makes counters
 function createCounter()
@@ -1449,27 +1415,63 @@ function createCounter()
     end
 end
 
-function createTextbox()
-    for i, data in ipairs(ref_buttonData.textbox) do
-        --Sets up reference function
-        local funcName = "textbox"..i
-        local func = function(_,_,val,sel) click_textbox(i,val,sel)
- end
-        self.setVar(funcName, func)
+-- creates single checkbox
+function createCheckbox(data, key)
+--Sets up reference function
+    local buttonNumber = spawnedButtonCount
+    local funcName = "checkbox"..key
+    local func = function() click_checkbox(key) end
+    self.setVar(funcName, func)
+    --Sets up label
+    local label = ""
+    if data.state==true then label=string.char(10008) end
+    --Creates button and counts it
+    self.createButton({
+        label=label, click_function=funcName, function_owner=self,
+        position=data.pos, height=data.size, width=data.size,
+        font_size=data.size, scale=buttonScale,
+        color=buttonColor, font_color=buttonFontColor
+    })
+    spawnedButtonCount = spawnedButtonCount + 1
+end
 
-        self.createInput({
-            input_function = funcName,
-            function_owner = self,
-            label          = data.label,
-            alignment      = data.alignment,
-            position       = data.pos,
-            scale          = buttonScale,
-            width          = data.width,
-            height         = (data.font_size*data.rows)+24,
-            font_size      = data.font_size,
-            color          = buttonColor,
-            font_color     = buttonFontColor,
-            value          = data.value,
-        })
+-- creates single textbox
+function createTextbox(data, key)
+    --Sets up reference function
+    local funcName = "textbox"..key
+    local func = function(_,_,val,sel) click_textbox(key, val, sel) end
+    self.setVar(funcName, func)
+
+    self.createInput({
+        input_function = funcName,
+        function_owner = self,
+        label          = data.label,
+        alignment      = data.alignment,
+        position       = data.pos,
+        scale          = buttonScale,
+        width          = data.width,
+        height         = (data.font_size*data.rows)+24,
+        font_size      = data.font_size,
+        color          = buttonColor,
+        font_color     = buttonFontColor,
+        value          = data.value,
+    })
+end
+
+--Creates every textbox
+function createTextboxes()
+    local object = ref_buttonData.textbox
+    
+    for key in pairs(object) do
+        createTextbox(object[key], key)
     end
+end
+
+--Makes checkboxes
+function createCheckboxes()
+    local object = ref_buttonData.checkbox
+    
+    for key in pairs(object) do
+        createCheckbox(object[key], key)
+    end 
 end
