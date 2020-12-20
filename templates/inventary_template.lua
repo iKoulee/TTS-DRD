@@ -62,6 +62,95 @@ buttonColor = {1,1,1}
 --Change scale of button (Avoid changing if possible)
 buttonScale = {0.1,0.1,0.1}
 
+textBoxTemplates = {
+    slimLineTemplate = {
+        textBoxTemplates = {
+            {
+                x       = -1.03,
+                y       = 0.1,
+                label   = "item",
+                width   = 5180,
+            },
+            {
+                x       = 0.104,
+                y       = 0.1,
+                label   = "-",
+                width   = 5400,
+            },
+            {
+                x       = 0.9385,
+                y       = 0.1,
+                label   = "-",
+                width   = 2300,
+            },
+            {
+                x       = 1.39,
+                y       = 0.1,
+                label   = "0",
+                width   = 1750,
+            }
+        },
+        rows        = 1,
+        fontSize    = 550,
+        lines = {   -1.5405, 
+                    -1.3875,
+                    -1.2345,
+                    -1.0815,
+                    -0.9285,
+                    -0.7755,
+                    -0.6225,
+                    -0.4695,
+                    -0.3165,
+                    -0.1635,
+                    -0.0105,
+                    0.1425
+        }
+    },
+
+    bulkLineTemplate = {
+        textBoxTemplates = {
+            {
+                x       = -1.03,
+                y       = 0.1,
+                label   = "item",
+                width   = 5180,
+            },
+            {
+                x       = 0.104,
+                y       = 0.1,
+                label   = "-",
+                width   = 5400,
+            },
+            {
+                x       = 0.9385,
+                y       = 0.1,
+                label   = "-",
+                width   = 2300,
+            },
+            {
+                x       = 1.39,
+                y       = 0.1,
+                label   = "0",
+                width   = 1750,
+            }
+        },
+        rows        = 2,
+        fontSize    = 490,
+        lines = {
+            0.33,
+            0.568,
+            0.806,
+            1.044,
+            1.282,
+            1.520,
+            1.758,
+            1.996
+
+        }
+
+    }
+}
+
 --This is the button placement information
 defaultButtonData = {
     --Add checkboxes
@@ -103,6 +192,7 @@ defaultButtonData = {
 ]]
     },
     --Add editable text boxes
+    
 
     headerTextBoxes = {
         --[[
@@ -178,865 +268,7 @@ defaultButtonData = {
         value     = text entered into box. "" = nothing
         alignment = Number to indicate how you want text aligned
                     (1=Automatic, 2=Left, 3=Center, 4=Right, 5=Justified)
-        ]]
-        --zlataky
-        {
-            pos       = {-1.357,0.1,-1.9},
-            rows      = 1,
-            width     = 2000,
-            font_size = 750,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-        --stribrnaky
-        {
-            pos       = {-0.871,0.1,-1.9},
-            rows      = 1,
-            width     = 2000,
-            font_size = 750,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-        --medaky
-        {
-            pos       = {-0.379,0.1,-1.9},
-            rows      = 1,
-            width     = 2000,
-            font_size = 750,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-        --nosnost
-        {
-            pos       = {0.460,0.1,-1.9},
-            rows      = 1,
-            width     = 5400,
-            font_size = 550,
-            label     = "0/0/0/0",
-            value     = "",
-            alignment = 3
-        },
-        --zatížení
-        {
-            pos       = {1.333,0.1,-1.9},
-            rows      = 1,
-            width     = 2280,
-            font_size = 750,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
------------------------
---INVENTORY
------------------------
-        --vec_01
-        {
-            pos       = {-1.03,0.1,-1.5405},
-            rows      = 1,
-            width     = 5180,
-            font_size = 550,
-            label     = "item",
-            value     = "",
-            alignment = 3
-        },
-        --vlastnosti_01
-        {
-            pos       = {0.104,0.1,-1.5405},
-            rows      = 1,
-            width     = 5400,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --kde_01
-        {
-            pos       = {0.9385,0.1,-1.5405},
-            rows      = 1,
-            width     = 2300,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --hmotnost_01
-        {
-            pos       = {1.39,0.1,-1.5405},
-            rows      = 1,
-            width     = 1750,
-            font_size = 550,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-        --vec_02
-        {
-            pos       = {-1.03,0.1,-1.3875},
-            rows      = 1,
-            width     = 5180,
-            font_size = 550,
-            label     = "item",
-            value     = "",
-            alignment = 3
-        },
-        --vlastnosti_02
-        {
-            pos       = {0.104,0.1,-1.3875},
-            rows      = 1,
-            width     = 5400,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --kde_02
-        {
-            pos       = {0.9385,0.1,-1.3875},
-            rows      = 1,
-            width     = 2300,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --hmotnost_02
-        {
-            pos       = {1.39,0.1,-1.3875},
-            rows      = 1,
-            width     = 1750,
-            font_size = 550,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-        --vec_03
-        {
-            pos       = {-1.03,0.1,-1.2345},
-            rows      = 1,
-            width     = 5180,
-            font_size = 550,
-            label     = "item",
-            value     = "",
-            alignment = 3
-        },
-        --vlastnosti_03
-        {
-            pos       = {0.104,0.1,-1.2345},
-            rows      = 1,
-            width     = 5400,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --kde_03
-        {
-            pos       = {0.9385,0.1,-1.2345},
-            rows      = 1,
-            width     = 2300,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --hmotnost_03
-        {
-            pos       = {1.39,0.1,-1.2345},
-            rows      = 1,
-            width     = 1750,
-            font_size = 550,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-        --vec_04
-        {
-            pos       = {-1.03,0.1,-1.0815},
-            rows      = 1,
-            width     = 5180,
-            font_size = 550,
-            label     = "item",
-            value     = "",
-            alignment = 3
-        },
-        --vlastnosti_04
-        {
-            pos       = {0.104,0.1,-1.0815},
-            rows      = 1,
-            width     = 5400,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --kde_04
-        {
-            pos       = {0.9385,0.1,-1.0815},
-            rows      = 1,
-            width     = 2300,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --hmotnost_04
-        {
-            pos       = {1.39,0.1,-1.0815},
-            rows      = 1,
-            width     = 1750,
-            font_size = 550,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-        --vec_06
-        {
-            pos       = {-1.03,0.1,-0.9285},
-            rows      = 1,
-            width     = 5180,
-            font_size = 550,
-            label     = "item",
-            value     = "",
-            alignment = 3
-        },
-        --vlastnosti_06
-        {
-            pos       = {0.104,0.1,-0.9285},
-            rows      = 1,
-            width     = 5400,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --kde_06
-        {
-            pos       = {0.9385,0.1,-0.9285},
-            rows      = 1,
-            width     = 2300,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --hmotnost_06
-        {
-            pos       = {1.39,0.1,-0.9285},
-            rows      = 1,
-            width     = 1750,
-            font_size = 550,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-        --vec_07
-        {
-            pos       = {-1.03,0.1,-0.7755},
-            rows      = 1,
-            width     = 5180,
-            font_size = 550,
-            label     = "item",
-            value     = "",
-            alignment = 3
-        },
-        --vlastnosti_07
-        {
-            pos       = {0.104,0.1,-0.7755},
-            rows      = 1,
-            width     = 5400,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --kde_07
-        {
-            pos       = {0.9385,0.1,-0.7755},
-            rows      = 1,
-            width     = 2300,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --hmotnost_07
-        {
-            pos       = {1.39,0.1,-0.7755},
-            rows      = 1,
-            width     = 1750,
-            font_size = 550,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-        --vec_08
-        {
-            pos       = {-1.03,0.1,-0.6225},
-            rows      = 1,
-            width     = 5180,
-            font_size = 550,
-            label     = "item",
-            value     = "",
-            alignment = 3
-        },
-        --vlastnosti_08
-        {
-            pos       = {0.104,0.1,-0.6225},
-            rows      = 1,
-            width     = 5400,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --kde_08
-        {
-            pos       = {0.9385,0.1,-0.6225},
-            rows      = 1,
-            width     = 2300,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --hmotnost_08
-        {
-            pos       = {1.39,0.1,-0.6225},
-            rows      = 1,
-            width     = 1750,
-            font_size = 550,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-        --vec_09
-        {
-            pos       = {-1.03,0.1,-0.4695},
-            rows      = 1,
-            width     = 5180,
-            font_size = 550,
-            label     = "item",
-            value     = "",
-            alignment = 3
-        },
-        --vlastnosti_09
-        {
-            pos       = {0.104,0.1,-0.4695},
-            rows      = 1,
-            width     = 5400,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --kde_09
-        {
-            pos       = {0.9385,0.1,-0.4695},
-            rows      = 1,
-            width     = 2300,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --hmotnost_09
-        {
-            pos       = {1.39,0.1,-0.4695},
-            rows      = 1,
-            width     = 1750,
-            font_size = 550,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-        --vec_10
-        {
-            pos       = {-1.03,0.1,-0.3165},
-            rows      = 1,
-            width     = 5180,
-            font_size = 550,
-            label     = "item",
-            value     = "",
-            alignment = 3
-        },
-        --vlastnosti_10
-        {
-            pos       = {0.104,0.1,-0.3165},
-            rows      = 1,
-            width     = 5400,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --kde_10
-        {
-            pos       = {0.9385,0.1,-0.3165},
-            rows      = 1,
-            width     = 2300,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --hmotnost_10
-        {
-            pos       = {1.39,0.1,-0.3165},
-            rows      = 1,
-            width     = 1750,
-            font_size = 550,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-        --vec_11
-        {
-            pos       = {-1.03,0.1,-0.1635},
-            rows      = 1,
-            width     = 5180,
-            font_size = 550,
-            label     = "item",
-            value     = "",
-            alignment = 3
-        },
-        --vlastnosti_11
-        {
-            pos       = {0.104,0.1,-0.1635},
-            rows      = 1,
-            width     = 5400,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --kde_11
-        {
-            pos       = {0.9385,0.1,-0.1635},
-            rows      = 1,
-            width     = 2300,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --hmotnost_11
-        {
-            pos       = {1.39,0.1,-0.1635},
-            rows      = 1,
-            width     = 1750,
-            font_size = 550,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-        --vec_12
-        {
-            pos       = {-1.03,0.1,-0.0105},
-            rows      = 1,
-            width     = 5180,
-            font_size = 550,
-            label     = "item",
-            value     = "",
-            alignment = 3
-        },
-        --vlastnosti_12
-        {
-            pos       = {0.104,0.1,-0.0105},
-            rows      = 1,
-            width     = 5400,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --kde_12
-        {
-            pos       = {0.9385,0.1,-0.0105},
-            rows      = 1,
-            width     = 2300,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --hmotnost_12
-        {
-            pos       = {1.39,0.1,-0.0105},
-            rows      = 1,
-            width     = 1750,
-            font_size = 550,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-         --vec_05
-        {
-            pos       = {-1.03,0.1,0.1425},
-            rows      = 1,
-            width     = 5180,
-            font_size = 550,
-            label     = "item",
-            value     = "",
-            alignment = 3
-        },
-        --vlastnosti_05
-        {
-            pos       = {0.104,0.1,0.1425},
-            rows      = 1,
-            width     = 5400,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --kde_05
-        {
-            pos       = {0.9385,0.1,0.1425},
-            rows      = 1,
-            width     = 2300,
-            font_size = 550,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --hmotnost_05
-        {
-            pos       = {1.39,0.1,0.1425},
-            rows      = 1,
-            width     = 1750,
-            font_size = 550,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
--------------------------------------------------
---INVENTORY - BIG
--------------------------------------------------
-         --vecBig_01
-        {
-            pos       = {-1.03,0.1,0.33},
-            rows      = 2,
-            width     = 5180,
-            font_size = 490,
-            label     = "Item",
-            value     = "",
-            alignment = 3
-        },
-        --vlastnostiBig_01
-        {
-            pos       = {0.104,0.1,0.33},
-            rows      = 2,
-            width     = 5400,
-            font_size = 490,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --kdeBig_01
-        {
-            pos       = {0.9385,0.1,0.33},
-            rows      = 2,
-            width     = 2300,
-            font_size = 490,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --hmotnostBig_01
-        {
-            pos       = {1.39,0.1,0.33},
-            rows      = 2,
-            width     = 1750,
-            font_size = 490,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-         --vecBig_02
-        {
-            pos       = {-1.03,0.1,0.568},
-            rows      = 2,
-            width     = 5180,
-            font_size = 490,
-            label     = "Item",
-            value     = "",
-            alignment = 3
-        },
-        --vlastnostiBig_02
-        {
-            pos       = {0.104,0.1,0.568},
-            rows      = 2,
-            width     = 5400,
-            font_size = 490,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --kdeBig_02
-        {
-            pos       = {0.9385,0.1,0.568},
-            rows      = 2,
-            width     = 2300,
-            font_size = 490,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --hmotnostBig_02
-        {
-            pos       = {1.39,0.1,0.568},
-            rows      = 2,
-            width     = 1750,
-            font_size = 490,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-         --vecBig_03
-        {
-            pos       = {-1.03,0.1,0.806},
-            rows      = 2,
-            width     = 5180,
-            font_size = 490,
-            label     = "Item",
-            value     = "",
-            alignment = 3
-        },
-        --vlastnostiBig_03
-        {
-            pos       = {0.104,0.1,0.806},
-            rows      = 2,
-            width     = 5400,
-            font_size = 490,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --kdeBig_03
-        {
-            pos       = {0.9385,0.1,0.806},
-            rows      = 2,
-            width     = 2300,
-            font_size = 490,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --hmotnostBig_03
-        {
-            pos       = {1.39,0.1,0.806},
-            rows      = 2,
-            width     = 1750,
-            font_size = 490,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-         --vecBig_04
-        {
-            pos       = {-1.03,0.1,1.044},
-            rows      = 2,
-            width     = 5180,
-            font_size = 490,
-            label     = "Item",
-            value     = "",
-            alignment = 3
-        },
-        --vlastnostiBig_04
-        {
-            pos       = {0.104,0.1,1.044},
-            rows      = 2,
-            width     = 5400,
-            font_size = 490,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --kdeBig_04
-        {
-            pos       = {0.9385,0.1,1.044},
-            rows      = 2,
-            width     = 2300,
-            font_size = 490,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --hmotnostBig_04
-        {
-            pos       = {1.39,0.1,1.044},
-            rows      = 2,
-            width     = 1750,
-            font_size = 490,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-         --vecBig_05
-        {
-            pos       = {-1.03,0.1,1.282},
-            rows      = 2,
-            width     = 5180,
-            font_size = 490,
-            label     = "Item",
-            value     = "",
-            alignment = 3
-        },
-        --vlastnostiBig_05
-        {
-            pos       = {0.104,0.1,1.282},
-            rows      = 2,
-            width     = 5400,
-            font_size = 490,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --kdeBig_05
-        {
-            pos       = {0.9385,0.1,1.282},
-            rows      = 2,
-            width     = 2300,
-            font_size = 490,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --hmotnostBig_05
-        {
-            pos       = {1.39,0.1,1.282},
-            rows      = 2,
-            width     = 1750,
-            font_size = 490,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-         --vecBig_06
-        {
-            pos       = {-1.03,0.1,1.520},
-            rows      = 2,
-            width     = 5180,
-            font_size = 490,
-            label     = "Item",
-            value     = "",
-            alignment = 3
-        },
-        --vlastnostiBig_06
-        {
-            pos       = {0.104,0.1,1.520},
-            rows      = 2,
-            width     = 5400,
-            font_size = 490,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --kdeBig_06
-        {
-            pos       = {0.9385,0.1,1.520},
-            rows      = 2,
-            width     = 2300,
-            font_size = 490,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --hmotnostBig_06
-        {
-            pos       = {1.39,0.1,1.520},
-            rows      = 2,
-            width     = 1750,
-            font_size = 490,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-         --vecBig_07
-        {
-            pos       = {-1.03,0.1,1.758},
-            rows      = 2,
-            width     = 5180,
-            font_size = 490,
-            label     = "Item",
-            value     = "",
-            alignment = 3
-        },
-        --vlastnostiBig_07
-        {
-            pos       = {0.104,0.1,1.758},
-            rows      = 2,
-            width     = 5400,
-            font_size = 490,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --kdeBig_07
-        {
-            pos       = {0.9385,0.1,1.758},
-            rows      = 2,
-            width     = 2300,
-            font_size = 490,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --hmotnostBig_07
-        {
-            pos       = {1.39,0.1,1.758},
-            rows      = 2,
-            width     = 1750,
-            font_size = 490,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-         --vecBig_08
-        {
-            pos       = {-1.03,0.1,1.996},
-            rows      = 2,
-            width     = 5180,
-            font_size = 490,
-            label     = "Item",
-            value     = "",
-            alignment = 3
-        },
-        --vlastnostiBig_08
-        {
-            pos       = {0.104,0.1,1.996},
-            rows      = 2,
-            width     = 5400,
-            font_size = 490,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --kdeBig_08
-        {
-            pos       = {0.9385,0.1,1.996},
-            rows      = 2,
-            width     = 2300,
-            font_size = 490,
-            label     = "-",
-            value     = "",
-            alignment = 3
-        },
-        --hmotnostBig_08
-        {
-            pos       = {1.39,0.1,1.996},
-            rows      = 2,
-            width     = 1750,
-            font_size = 490,
-            label     = "0",
-            value     = "",
-            alignment = 3
-        },
-
-        --End of textboxes
+        ]]  
     }
 }
 
@@ -1062,11 +294,17 @@ function onload(saved_data)
         ref_buttonData = loaded_data
     else
         ref_buttonData = defaultButtonData
+        createItemListFromTemplate(textBoxTemplates.slimLineTemplate)
     end
     ]]
 
+    ref_buttonData = defaultButtonData
+    createItemListFromTemplate(textBoxTemplates.slimLineTemplate)
+    createItemListFromTemplate(textBoxTemplates.bulkLineTemplate)
+
     spawnedButtonCount = 0
     createTextbox(ref_buttonData.headerTextBoxes)
+    createTextbox(ref_buttonData.items)
 end
 
 --Updates saved value for given text box
@@ -1077,8 +315,21 @@ function click_textbox(i, value, selected)
     end
 end
 
---Dud function for if you have a background on a counter
-function click_none() end
+function createItemListFromTemplate(template)
+    for _, linePos in pairs(template.lines) do
+        for _, textBoxTemplate in pairs(template.textBoxTemplates) do
+            table.insert(ref_buttonData.items,{
+                pos       = {textBoxTemplate.x, textBoxTemplate.y, linePos},
+                rows      = template.rows,
+                width     = textBoxTemplate.width,
+                font_size = template.fontSize,
+                label     = textBoxTemplate.label,
+                value     = "",
+                alignment = 3
+            })
+        end
+    end
+end
 
 
 
@@ -1098,7 +349,7 @@ function createTextbox(textBoxTable)
             position       = data.pos,
             scale          = buttonScale,
             width          = data.width,
-            height         = (data.font_size*data.rows)+24,
+            height         = data.font_size * data.rows + 24,
             font_size      = data.font_size,
             color          = buttonColor,
             font_color     = buttonFontColor,
