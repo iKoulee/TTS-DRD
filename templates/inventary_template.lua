@@ -205,8 +205,8 @@ defaultButtonData = {
         alignment = Number to indicate how you want text aligned
                     (1=Automatic, 2=Left, 3=Center, 4=Right, 5=Justified)
         ]]
-        --zlataky
-        {
+    
+        gold = {
             pos       = {-1.357,0.1,-1.9},
             rows      = 1,
             width     = 2000,
@@ -215,8 +215,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --stribrnaky
-        {
+        silver = {
             pos       = {-0.871,0.1,-1.9},
             rows      = 1,
             width     = 2000,
@@ -225,8 +224,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --medaky
-        {
+        copper = {
             pos       = {-0.379,0.1,-1.9},
             rows      = 1,
             width     = 2000,
@@ -235,8 +233,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --nosnost
-        {
+        loadCap = {
             pos       = {0.460,0.1,-1.9},
             rows      = 1,
             width     = 5400,
@@ -245,8 +242,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
-        --zatížení
-        {
+        load = {
             pos       = {1.333,0.1,-1.9},
             rows      = 1,
             width     = 2280,
@@ -331,16 +327,8 @@ function createItemListFromTemplate(template)
     end
 end
 
-
-
-
 function createTextbox(textBoxTable)
-    for i, data in ipairs(textBoxTable) do
-        --Sets up reference function
-        local funcName = "textbox"..i
-        local func = function(_,_,val,sel) click_textbox(i,val,sel) end
-        self.setVar(funcName, func)
-
+    for _, data in pairs(textBoxTable) do
         self.createInput({
             input_function = funcName,
             function_owner = self,
