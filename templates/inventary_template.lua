@@ -51,9 +51,10 @@ Bonus) Finding/Editing Positions for elements
 Begin editing below:    ]]
 
 --Set this to true while editing and false when you have finished
-disableSave = false
+disableSave = true
 --Remember to set this to false once you are done making changes
 --Then, after you save & apply it, save your game too
+resetSave = true
 
 --Color information for button text (r,g,b, values of 0-1)
 buttonFontColor = {0,0,0}
@@ -70,24 +71,28 @@ textBoxTemplates = {
                 y       = 0.1,
                 label   = "item",
                 width   = 5180,
+                isWeight    = false
             },
             {
                 x       = 0.104,
                 y       = 0.1,
                 label   = "-",
                 width   = 5400,
+                isWeight    = false
             },
             {
                 x       = 0.9385,
                 y       = 0.1,
                 label   = "-",
                 width   = 2300,
+                isWeight    = false
             },
             {
                 x       = 1.39,
                 y       = 0.1,
                 label   = "0",
                 width   = 1750,
+                isWeight    = true
             }
         },
         rows        = 1,
@@ -110,28 +115,32 @@ textBoxTemplates = {
     bulkLineTemplate = {
         textBoxTemplates = {
             {
-                x       = -1.03,
-                y       = 0.1,
-                label   = "item",
-                width   = 5180,
+                x           = -1.03,
+                y           = 0.1,
+                label       = "item",
+                width       = 5180,
+                isWeight    = false
             },
             {
-                x       = 0.104,
-                y       = 0.1,
-                label   = "-",
-                width   = 5400,
+                x           = 0.104,
+                y           = 0.1,
+                label       = "-",
+                width       = 5400,
+                isWeight    = false
             },
             {
-                x       = 0.9385,
-                y       = 0.1,
-                label   = "-",
-                width   = 2300,
+                x           = 0.9385,
+                y           = 0.1,
+                label       = "-",
+                width       = 2300,
+                isWeight    = false
             },
             {
-                x       = 1.39,
-                y       = 0.1,
-                label   = "0",
-                width   = 1750,
+                x           = 1.39,
+                y           = 0.1,
+                label       = "0",
+                width       = 1750,
+                isWeight    = true
             }
         },
         rows        = 2,
@@ -194,7 +203,7 @@ defaultButtonData = {
     --Add editable text boxes
     
 
-    headerTextBoxes = {
+    textBoxes = {
         --[[
         pos       = the position (pasted from the helper tool)
         rows      = how many lines of text you want for this box
@@ -205,35 +214,48 @@ defaultButtonData = {
         alignment = Number to indicate how you want text aligned
                     (1=Automatic, 2=Left, 3=Center, 4=Right, 5=Justified)
         ]]
-    
-        gold = {
+        --load
+        {
+            pos       = {1.333,0.1,-1.9},
+            rows      = 1,
+            width     = 2280,
+            font_size = 750,
+            label     = "0",
+            value     = "0",
+            alignment = 3
+        },
+        --gold
+        {
             pos       = {-1.357,0.1,-1.9},
             rows      = 1,
             width     = 2000,
             font_size = 750,
             label     = "0",
-            value     = "",
+            value     = "0",
             alignment = 3
         },
-        silver = {
+        --silver
+        {
             pos       = {-0.871,0.1,-1.9},
             rows      = 1,
             width     = 2000,
             font_size = 750,
             label     = "0",
-            value     = "",
+            value     = "0",
             alignment = 3
         },
-        copper = {
+        --copper
+        {
             pos       = {-0.379,0.1,-1.9},
             rows      = 1,
             width     = 2000,
             font_size = 750,
             label     = "0",
-            value     = "",
+            value     = "0",
             alignment = 3
         },
-        loadCap = {
+        --
+        {
             pos       = {0.460,0.1,-1.9},
             rows      = 1,
             width     = 5400,
@@ -241,31 +263,8 @@ defaultButtonData = {
             label     = "0/0/0/0",
             value     = "",
             alignment = 3
-        },
-        load = {
-            pos       = {1.333,0.1,-1.9},
-            rows      = 1,
-            width     = 2280,
-            font_size = 750,
-            label     = "0",
-            value     = "",
-            alignment = 3
         }
     },
-
-
-    items = {
-        --[[
-        pos       = the position (pasted from the helper tool)
-        rows      = how many lines of text you want for this box
-        width     = how wide the text box is
-        font_size = size of text. This and "rows" effect overall height
-        label     = what is shown when there is no text. "" = nothing
-        value     = text entered into box. "" = nothing
-        alignment = Number to indicate how you want text aligned
-                    (1=Automatic, 2=Left, 3=Center, 4=Right, 5=Justified)
-        ]]  
-    }
 }
 
 
@@ -283,52 +282,83 @@ end
 
 --Startup procedure
 function onload(saved_data)
+    log("Loading inventory sheet")
+    log("disabled save: "..tostring(disableSave))
+    log("reset save: "..tostring(resetSave))
     if disableSave==true then saved_data="" end
-    --[[
-    if saved_data ~= "" then
+    if saved_data ~= "" and resetSave == false then
         local loaded_data = JSON.decode(saved_data)
         ref_buttonData = loaded_data
     else
+        log("No saved data, generating fresh sheat")
         ref_buttonData = defaultButtonData
         createItemListFromTemplate(textBoxTemplates.slimLineTemplate)
+        createItemListFromTemplate(textBoxTemplates.bulkLineTemplate)
     end
-    ]]
-
-    ref_buttonData = defaultButtonData
-    createItemListFromTemplate(textBoxTemplates.slimLineTemplate)
-    createItemListFromTemplate(textBoxTemplates.bulkLineTemplate)
+    --log("Header: "..tablelength(ref_buttonData.textBoxes))
+    --logTable(ref_buttonData.textBoxes, 0)
+    --log("Items: "..tablelength(ref_buttonData.textBoxes))
 
     spawnedButtonCount = 0
-    createTextbox(ref_buttonData.headerTextBoxes)
-    createTextbox(ref_buttonData.items)
+    createTextbox(ref_buttonData.textBoxes)
 end
 
 --Updates saved value for given text box
-function click_textbox(i, value, selected)
-    if selected == false then
-        ref_buttonData.textbox[i].value = value
+function onClick(index, value, selected)
+    if selected == true then
+        ref_buttonData.textBoxes[index].value = tostring(value)
+        recalculateLoad()
         updateSave()
     end
 end
 
+function recalculateLoad()
+    local load = toNumber0(ref_buttonData.textBoxes[2].value)
+    load = load + 0.5 * toNumber0(ref_buttonData.textBoxes[3].value)
+    load = load + 0.25 * toNumber0(ref_buttonData.textBoxes[4].value)
+    for _, item in pairs(ref_buttonData.textBoxes) do
+        if (item.isWeight == true) and (not (item.value == nil)) then
+            load = load + toNumber0(item.value)
+        end
+    end
+    --ref_buttonData.textBoxes[0].value = tostring(load)
+    self.editInput({index = 0, value = tostring(load)})
+end
+
+function toNumber0(value) 
+    local number = tonumber(value)
+    if number == nil then
+        return 0    
+    end
+    return number
+end 
+
+
 function createItemListFromTemplate(template)
-    for _, linePos in pairs(template.lines) do
-        for _, textBoxTemplate in pairs(template.textBoxTemplates) do
-            table.insert(ref_buttonData.items,{
+    for lineNo, linePos in pairs(template.lines) do
+        --log("Create item #"..lineNo)
+        --logTable(template.textBoxTemplates)
+        for boxNo, textBoxTemplate in pairs(template.textBoxTemplates) do
+            table.insert(ref_buttonData.textBoxes, {
                 pos       = {textBoxTemplate.x, textBoxTemplate.y, linePos},
                 rows      = template.rows,
                 width     = textBoxTemplate.width,
                 font_size = template.fontSize,
                 label     = textBoxTemplate.label,
                 value     = "",
-                alignment = 3
+                alignment = 3,
+                isWeight  = textBoxTemplate.isWeight
             })
         end
     end
 end
 
 function createTextbox(textBoxTable)
-    for _, data in pairs(textBoxTable) do
+    for iterator, data in pairs(textBoxTable) do
+        local funcName = "onClicTextBox_"..iterator
+        local func = function(_,_,value,selected) onClick(iterator, value, selected) end
+        self.setVar(funcName, func)
+
         self.createInput({
             input_function = funcName,
             function_owner = self,
@@ -343,5 +373,19 @@ function createTextbox(textBoxTable)
             font_color     = buttonFontColor,
             value          = data.value,
         })
+    end
+end
+
+function logTable(value, indent)
+    if not indent then
+        indent = 0
+    end
+    for index, line in pairs(value) do
+        if type(line) == "table" then
+            log(index..": ")
+            logTable(line, indent+1)
+        else
+            log(index..": "..tostring(line))
+        end
     end
 end
