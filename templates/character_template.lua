@@ -1305,7 +1305,7 @@ function onload(saved_data)
         ref_buttonData = defaultButtonData
     end
 
-    --reset FIMXE run on data structure change
+    --reset FIXME run on data structure change
     --ref_buttonData = defaultButtonData
 
     spawnedButtonCount = 0
@@ -1343,7 +1343,7 @@ function recalculateWeight()
     local totalWeight = toNumber0(o.closeCombat01Weight.value) + toNumber0(o.closeCombat02Weight.value) + toNumber0(o.closeCombat03Weight.value) + toNumber0(o.closeCombat04Weight.value) + toNumber0(o.closeCombat05Weight.value) + 
             toNumber0(o.rangedCombat01Weight.value) + toNumber0(o.rangedCombat02Weight.value) + toNumber0(o.rangedCombat03Weight.value) + toNumber0(o.rangedCombat04Weight.value) + toNumber0(o.rangedCombat05Weight.value);
 
-    resetLoadCheckboxes() 
+    --[[resetLoadCheckboxes() 
     if ( isLoadOver(totalWeight, ref_buttonData.textbox.heavyLoadMovement.value) ) then
        setCheckbox('heavyLoad', true)
     elseif ( isLoadOver(totalWeight, ref_buttonData.textbox.mediumLoadMovement.value) ) then 
@@ -1352,14 +1352,15 @@ function recalculateWeight()
         setCheckbox('lightLoad', true)
     else 
         setCheckbox('noLoad', true)
-    end 
+    end
+    ]]-- 
 
     log("total weight " .. totalWeight);
 end
 
 -- event listener for a textbox update
 function onTextboxUpdate(key)
-    log("textbox update " .. key)
+    --log("textbox update " .. key)
     if ( string.match(key, 'Weight') ) then 
         recalculateWeight()
     end
@@ -1394,7 +1395,7 @@ end
 --Checks or unchecks the given box
 function click_checkbox(key)
     local state = ref_buttonData.checkbox[key].state;
-    setCheckbox(key, state) 
+    setCheckbox(key, not(state)) 
 end
 
 --Applies value to given counter display
@@ -1408,7 +1409,7 @@ end
 
 --Updates saved value for given text box
 function click_textbox(key, value, selected)
-    log('clicking textbox ' .. key)
+    --log('clicking textbox ' .. key)
     if selected == false then
         ref_buttonData.textbox[key].value = value
         onTextboxUpdate(key)
