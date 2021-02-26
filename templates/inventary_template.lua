@@ -312,13 +312,67 @@ function onClick(index, value, selected)
     end
 end
 
+function formulaSplit (inputstr)
+        if inputstr == nil then
+            return 0
+        end
+        local numbers=nil
+        local operators=nil
+        
+        -- construct linked list of numbers
+        for str in string.gmatch(inputstr, "(%d+)") do
+            local val = tonumber(str)
+            numbers = {next = numbers, value = tonumber(str)}
+        end
+        
+        -- construct linked list of operators
+        for str in string.gmatch(inputstr, "[x+]") do 
+            operators = {next = operators, value = str}
+        end
+        
+        if numbers == nil or numbers.value == nil then
+            return 0
+        end
+        
+        -- execute
+        local total = numbers.value;
+        numbers = numbers.next;
+        while numbers ~= nil and numbers.value ~= nil do
+            if operators == nil or operators.value == nil then
+                return total
+            elseif operators.value == '+' then
+                total = total + numbers.value
+            elseif operators.value == 'x' then
+                total = total * numbers.value
+            end 
+            numbers = numbers.next
+            operators = operators.next
+        end
+
+        return total
+end
+
+function getLoad(value)
+    -- Gets total load in following forms
+    -- <number> just a number
+    -- <number>x<number> multiplier
+    -- <number>+<number> addition
+    -- <number>+<number>x<number> combination
+    if value == nil then
+        return 0
+    end
+
+    number = formulaSplit(value)
+    return number
+end 
+
 function recalculateLoad()
     local load = toNumber0(ref_buttonData.textBoxes[2].value)
     load = load + 0.5 * toNumber0(ref_buttonData.textBoxes[3].value)
     load = load + 0.25 * toNumber0(ref_buttonData.textBoxes[4].value)
     for _, item in pairs(ref_buttonData.textBoxes) do
         if (item.isWeight == true) and (not (item.value == nil)) then
-            load = load + toNumber0(item.value)
+            load = load + getLoad(item.value)
         end
     end
     --ref_buttonData.textBoxes[0].value = tostring(load)
