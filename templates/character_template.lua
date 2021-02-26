@@ -1306,7 +1306,7 @@ function onload(saved_data)
     end
 
     --reset FIMXE run on data structure change
-    ref_buttonData = defaultButtonData
+    --ref_buttonData = defaultButtonData
 
     spawnedButtonCount = 0
     createCheckboxes()
