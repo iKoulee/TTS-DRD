@@ -1343,7 +1343,7 @@ function recalculateWeight()
     local totalWeight = toNumber0(o.closeCombat01Weight.value) + toNumber0(o.closeCombat02Weight.value) + toNumber0(o.closeCombat03Weight.value) + toNumber0(o.closeCombat04Weight.value) + toNumber0(o.closeCombat05Weight.value) + 
             toNumber0(o.rangedCombat01Weight.value) + toNumber0(o.rangedCombat02Weight.value) + toNumber0(o.rangedCombat03Weight.value) + toNumber0(o.rangedCombat04Weight.value) + toNumber0(o.rangedCombat05Weight.value);
 
-    --[[resetLoadCheckboxes() 
+    --[[resetLoadCheckboxes()
     if ( isLoadOver(totalWeight, ref_buttonData.textbox.heavyLoadMovement.value) ) then
        setCheckbox('heavyLoad', true)
     elseif ( isLoadOver(totalWeight, ref_buttonData.textbox.mediumLoadMovement.value) ) then 
@@ -1353,7 +1353,7 @@ function recalculateWeight()
     else 
         setCheckbox('noLoad', true)
     end
-    ]]-- 
+    ]] 
 
     log("total weight " .. totalWeight);
 end
