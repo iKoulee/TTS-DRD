@@ -51,10 +51,10 @@ Bonus) Finding/Editing Positions for elements
 Begin editing below:    ]]
 
 --Set this to true while editing and false when you have finished
-disableSave = true
+disableSave = false
 --Remember to set this to false once you are done making changes
 --Then, after you save & apply it, save your game too
-resetSave = true
+resetSave = false
 
 --Color information for button text (r,g,b, values of 0-1)
 buttonFontColor = {0,0,0}
@@ -301,6 +301,7 @@ function onload(saved_data)
 
     spawnedButtonCount = 0
     createTextbox(ref_buttonData.textBoxes)
+    recalculateLoad()
 end
 
 --Updates saved value for given text box
