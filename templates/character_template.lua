@@ -52,6 +52,7 @@ Begin editing below:    ]]
 
 --Set this to true while editing and false when you have finished
 disableSave = false
+resetSave = false
 --Remember to set this to false once you are done making changes
 --Then, after you save & apply it, save your game too
 
@@ -454,26 +455,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
---------------------------------------------------
---[[
-   |\                     /)
- /\_\\__               (_//
-|   `>\-`     _._       //`)
- \ /` \\  _.-`:::`-._  //
-  `    \|`    :::    `|/
-        |     :::     |
-        |.....:::.....|
-        |:::::::::::::|
-        |     :::     |
-        \     :::     /
-         \    :::    /
-          `-. ::: .-'
-           //`:::`\\
-          //   '   \\
-         |/         \\
-]]
---Souboj tvari v tvar
---------------------------------------------------
+
         closeCombat01Name = --UC_btvt_zbran_01
         {
             pos       = {-0.374,0.1,-0.648},
@@ -544,7 +526,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
---------------------------------------------------
+
         closeCombat02Name = --UC_btvt_zbran_02
         {
             pos       = {-0.374,0.1,-0.451},
@@ -615,7 +597,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
---------------------------------------------------
+
         closeCombat03Name = --UC_btvt_zbran_03
         {
             pos       = {-0.374,0.1,-0.255},
@@ -686,7 +668,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
---------------------------------------------------
+
         closeCombat04Name =  --UC_btvt_zbran_04
         {
             pos       = {-0.374,0.1,-0.059},
@@ -757,7 +739,6 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
---------------------------------------------------
         closeCombat05Name = --UC_btvt_zbran_05
         {
             pos       = {-0.374,0.1,0.137},
@@ -828,51 +809,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
---------------------------------------------------
---[[
-                                                       |
-                                                        \.
-                                                        /|.
-                                                      /  `|.
-                                                    /     |.
-                                                  /       |.
-                                                /         `|.
-                                              /            |.
-                                            /              |.
-                                          /                |.
-     __                                 /                  `|.
-      -\                              /                     |.
-        \\                          /                       |.
-          \\                      /                         |.
-           \|                   /                           |\
-             \#####\          /                             ||
-         ==###########>     /                               ||
-          \##==      \    /                                 ||
-     ______ =       =|__/___                                ||
- ,--' ,----`-,__ ___/'  --,-`-==============================##==========>
-\               '        ##_______ ______   ______,--,____,=##,__
- `,    __==    ___,-,__,--'#'  ==='      `-'              | ##,-/
-   `-,____,---'       \####\              |        ____,--\_##,/
-       #_              |##   \  _____,---==,__,---'         ##
-        #              ]===--==\                            ||
-        #,             ]         \                          ||
-         #_            |           \                        ||
-          ##_       __/'             \                      ||
-           ####='     |                \                    |/
-            ###       |                  \                  |.
-            ##       _'                    \                |.
-           ###=======]                       \              |.
-          ///        |                         \           ,|.
-          //         |                           \         |.
-                                                   \      ,|.
-                                                     \    |.
-                                                       \  |.
-                                                         \|.
-                                                         /.
-                                                        |
-]]
---Souboj na dalku
---------------------------------------------------
+
         rangedCombat01Name = --UC_snd_zbran_01
         {
             pos       = {-0.4335,0.1,0.711},
@@ -953,7 +890,6 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
---------------------------------------------------
         rangedCombat02Name =  --UC_snd_zbran_02
         {
             pos       = {-0.4335,0.1,0.907},
@@ -1034,7 +970,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
---------------------------------------------------
+
         rangedCombat03Name =  --UC_snd_zbran_03
         {
             pos       = {-0.4335,0.1,1.103},
@@ -1115,7 +1051,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
---------------------------------------------------
+
         rangedCombat04Name =  --UC_snd_zbran_04
         {
             pos       = {-0.4335,0.1,1.299},
@@ -1196,7 +1132,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
---------------------------------------------------
+
         rangedCombat05Name =  --UC_snd_zbran_05
         {
             pos       = {-0.4335,0.1,1.495},
@@ -1280,28 +1216,31 @@ defaultButtonData = {
 
         --End of textboxes
     },
+
+    inventories = {}
 }
 
+combinedLoad = 0
 
 
 --Lua beyond this point, I recommend doing something more fun with your life
-
-
 
 --Save function
 function updateSave()
     saved_data = JSON.encode(ref_buttonData)
     if disableSave==true then saved_data="" end
     self.script_state = saved_data
+    log (self.getName() .. ' data saved')
 end
 
 --Startup procedure
 function onload(saved_data)
     if disableSave==true then saved_data="" end
-    if saved_data ~= "" then
+    if saved_data ~= "" and resetSave == false then
         local loaded_data = JSON.decode(saved_data)
         ref_buttonData = loaded_data
     else
+        log('initialising data from default')
         ref_buttonData = defaultButtonData
     end
 
@@ -1312,7 +1251,58 @@ function onload(saved_data)
     createCheckboxes()
     createCounters()
     createTextboxes()
+    recalculateLoad()
 end
+
+function onCollisionEnter(object)
+    local collider = object.collision_object 
+    if collider == nil then
+        return
+    end 
+
+    local name = collider.getName()
+    local guid = collider.getGUID()
+
+    if guid == nil then
+        return    
+    end
+    
+    register(guid)
+end 
+
+function unregister(id)
+    log('unregistering ' .. id)
+    ref_buttonData.inventories[id] = nil
+    recalculateLoad()
+end 
+
+function register(id)
+    local inventory = getObjectFromGUID(id)
+    
+    -- is not inventory
+    if inventory.getVar('totalLoad') == nil then
+        log (id .. 'is not an inventory, not registering')
+        return
+    end 
+
+    -- add
+    ref_buttonData.inventories[id] = inventory
+    ref_buttonData.inventories[id].call('register', self.getGUID())
+
+    recalculateLoad()
+end 
+
+function recalculateLoad()
+    combinedlLoad = 0
+    if ref_buttonData.inventories == nil then
+        return
+    end
+
+    for k, v in pairs(ref_buttonData.inventories) do
+        combinedlLoad = combinedlLoad + v.getVar('totalLoad')
+    end
+    log (self.getName() .. ': my new load is ' .. combinedlLoad)
+end 
 
 -- calls to number with failsafe 0
 function toNumber0(value) 

@@ -63,6 +63,8 @@ buttonColor = {1,1,1}
 --Change scale of button (Avoid changing if possible)
 buttonScale = {0.1,0.1,0.1}
 
+totalLoad = 0
+
 textBoxTemplates = {
     slimLineTemplate = {
         textBoxTemplates = {
@@ -162,47 +164,6 @@ textBoxTemplates = {
 
 --This is the button placement information
 defaultButtonData = {
-    --Add checkboxes
-    checkbox = {
-        --[[
-        pos   = the position (pasted from the helper tool)
-        size  = height/width/font_size for checkbox
-        state = default starting value for checkbox (true=checked, false=not)
-        ]]
---[[
-        --First checkbox
-        {
-            pos   = {-0.977,0.1,-0.589},
-            size  = 800,
-            state = false
-        },
-
-        --End of checkboxes
-]]
-    },
-    --Add counters that have a + and - button
-    counter = {
-        --[[
-        pos    = the position (pasted from the helper tool)
-        size   = height/width/font_size for counter
-        value  = default starting value for counter
-        hideBG = if background of counter is hidden (true=hidden, false=not)
-        ]]
---[[
-        --First counter
-        {
-            pos    = {-0.995,0.1,0.057},
-            size   = 800,
-            value  = 0,
-            hideBG = true
-        },
-
-        --End of counters
-]]
-    },
-    --Add editable text boxes
-    
-
     textBoxes = {
         --[[
         pos       = the position (pasted from the helper tool)
@@ -267,11 +228,17 @@ defaultButtonData = {
     },
 }
 
-
+parentCharacter = nil
 
 --Lua beyond this point, I recommend doing something more fun with your life
 
-
+function register(parentGUID)
+    sourceObject = getObjectFromGUID(parentGUID)
+    if parentCharacter ~= nil and sourceObject ~= parentCharacter then
+        parentCharacter.call('unregister', self.getGUID())
+    end
+    parentCharacter = sourceObject;  
+end 
 
 --Save function
 function updateSave()
@@ -295,9 +262,6 @@ function onload(saved_data)
         createItemListFromTemplate(textBoxTemplates.slimLineTemplate)
         createItemListFromTemplate(textBoxTemplates.bulkLineTemplate)
     end
-    --log("Header: "..tablelength(ref_buttonData.textBoxes))
-    --logTable(ref_buttonData.textBoxes, 0)
-    --log("Items: "..tablelength(ref_buttonData.textBoxes))
 
     spawnedButtonCount = 0
     createTextbox(ref_buttonData.textBoxes)
@@ -368,16 +332,21 @@ function getLoad(value)
 end 
 
 function recalculateLoad()
-    local load = toNumber0(ref_buttonData.textBoxes[2].value)
-    load = load + 0.5 * toNumber0(ref_buttonData.textBoxes[3].value)
-    load = load + 0.25 * toNumber0(ref_buttonData.textBoxes[4].value)
+    totalLoad = toNumber0(ref_buttonData.textBoxes[2].value)
+    totalLoad = totalLoad + 0.5 * toNumber0(ref_buttonData.textBoxes[3].value)
+    totalLoad = totalLoad + 0.25 * toNumber0(ref_buttonData.textBoxes[4].value)
     for _, item in pairs(ref_buttonData.textBoxes) do
         if (item.isWeight == true) and (not (item.value == nil)) then
-            load = load + getLoad(item.value)
+            totalLoad = totalLoad + getLoad(item.value)
         end
     end
     --ref_buttonData.textBoxes[0].value = tostring(load)
-    self.editInput({index = 0, value = tostring(load)})
+    self.editInput({index = 0, value = tostring(totalLoad)})
+
+    if parentCharacter ~= nil then
+        log ('calling recalculate on ' .. parentCharacter.getName())
+        parentCharacter.call('recalculateLoad')
+    end 
 end
 
 function toNumber0(value) 
