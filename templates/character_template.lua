@@ -435,19 +435,59 @@ defaultButtonData = {
             value     = "",
             alignment = 3
         },
+        noLoadThreshold = 
+        {
+            pos = {0.725, 0.1, -1.405},
+            rows = 1,
+            width = 1700,
+            font_size = 450,
+            label = "0",
+            value = "",
+            alignment = 3,
+        },
+        lightLoadThreshold = 
+        {
+            pos = {1.125, 0.1, -1.405},
+            rows = 1,
+            width = 1700,
+            font_size = 450,
+            label = "0",
+            value = "",
+            alignment = 3,
+        },
+        mediumLoadThreshold = 
+        {
+            pos = {1.525, 0.1, -1.405},
+            rows = 1,
+            width = 1700,
+            font_size = 450,
+            label = "0",
+            value = "",
+            alignment = 3,
+        },
+        heavyLoadThreshold = 
+        {
+            pos = {1.925, 0.1, -1.405},
+            rows = 1,
+            width = 1700,
+            font_size = 450,
+            label = "0",
+            value = "",
+            alignment = 3,
+        },
         defenseNumberBase = 
         {
-            pos       = {1.71,0.1,-1.382},
+            pos       = {1.70, 0.1, -1.240},
             rows      = 1,
-            width     = 3800,
-            font_size = 600,
+            width     = 3820,
+            font_size = 660,
             label     = "0",
             value     = "",
             alignment = 3,
         },
         defenseNumberDetails = 
         {
-            pos       = {1.331,0.1,-1.1872},
+            pos       = {1.322,0.1,-1.0472},
             rows      = 2,
             width     = 7500,
             font_size = 350,
@@ -749,7 +789,7 @@ defaultButtonData = {
             value     = "",
             alignment = 3,
         },
-        closeCombat03Location =  --UC_btvt_kde_05
+        closeCombat05Location =  --UC_btvt_kde_05
         {
             pos       = {0.168,0.1,0.137},
             rows      = 2,
@@ -1255,11 +1295,12 @@ function onload(saved_data)
 end
 
 function onCollisionEnter(object)
+    
     local collider = object.collision_object 
     if collider == nil then
         return
     end 
-
+    
     local name = collider.getName()
     local guid = collider.getGUID()
 
@@ -1284,7 +1325,7 @@ function register(id)
         log (id .. 'is not an inventory, not registering')
         return
     end 
-
+    
     -- add
     ref_buttonData.inventories[id] = inventory
     ref_buttonData.inventories[id].call('register', self.getGUID())
@@ -1293,15 +1334,18 @@ function register(id)
 end 
 
 function recalculateLoad()
-    combinedlLoad = 0
+    combinedLoad = 0
     if ref_buttonData.inventories == nil then
         return
     end
 
     for k, v in pairs(ref_buttonData.inventories) do
-        combinedlLoad = combinedlLoad + v.getVar('totalLoad')
+        combinedLoad = combinedLoad + v.getVar('totalLoad')
     end
-    log (self.getName() .. ': my new load is ' .. combinedlLoad)
+
+   
+    log (self.getName() .. ': my new load is ' .. combinedLoad)
+     recalculateWeight()
 end 
 
 -- calls to number with failsafe 0
@@ -1322,39 +1366,33 @@ function resetLoadCheckboxes()
 end
 
 -- checks if load is over the load value
-function isLoadOver(load, thresholdValue)
-    log('testing load ' .. load .. ' over ' .. thresholdValue)
-    return load > toNumber0(thresholdValue)
+function isLoadOver(thresholdValue)
+    log('testing load ' .. combinedLoad .. ' over ' .. thresholdValue)
+    return combinedLoad > toNumber0(thresholdValue)
 end 
 
 -- recalculate all weight
 function recalculateWeight()
     local o = ref_buttonData.textbox
-    local totalWeight = toNumber0(o.closeCombat01Weight.value) + toNumber0(o.closeCombat02Weight.value) + toNumber0(o.closeCombat03Weight.value) + toNumber0(o.closeCombat04Weight.value) + toNumber0(o.closeCombat05Weight.value) + 
-            toNumber0(o.rangedCombat01Weight.value) + toNumber0(o.rangedCombat02Weight.value) + toNumber0(o.rangedCombat03Weight.value) + toNumber0(o.rangedCombat04Weight.value) + toNumber0(o.rangedCombat05Weight.value);
 
     resetLoadCheckboxes()
-    --[[
-    if ( isLoadOver(totalWeight, ref_buttonData.textbox.heavyLoadMovement.value) ) then
+    
+    if ( isLoadOver(ref_buttonData.textbox.mediumLoadThreshold.value) ) then
        setCheckbox('heavyLoad', true)
-    elseif ( isLoadOver(totalWeight, ref_buttonData.textbox.mediumLoadMovement.value) ) then 
+    elseif ( isLoadOver(ref_buttonData.textbox.lightLoadThreshold.value) ) then 
         setCheckbox('mediumLoad', true)
-    elseif ( isLoadOver(totalWeight, ref_buttonData.textbox.lightLoadMovement.value) ) then
+    elseif ( isLoadOver(ref_buttonData.textbox.noLoadThreshold.value) ) then
         setCheckbox('lightLoad', true)
     else 
         setCheckbox('noLoad', true)
     end
-    ]] 
 
-    log("total weight " .. totalWeight);
 end
 
 -- event listener for a textbox update
 function onTextboxUpdate(key)
     log("textbox update " .. key)
-    if ( string.match(key, 'Weight') ) then 
-        recalculateWeight()
-    end
+
 end
 
 --Helper bruteforce function to get map index
@@ -1376,11 +1414,12 @@ function setCheckbox(key, newState)
     else 
         char = ""
     end
-
+    log('set checkbox')
     ref_buttonData.checkbox[key].state = newState
     i = getIndex(ref_buttonData.checkbox, key, checkboxButtonStartIndex)
     self.editButton({index=i, label=char})
-    updateSave()
+    log ('set checkbox done')
+   
 end 
 
 --Checks or unchecks the given box
