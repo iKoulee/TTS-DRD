@@ -1367,7 +1367,6 @@ end
 
 -- checks if load is over the load value
 function isLoadOver(thresholdValue)
-    log('testing load ' .. combinedLoad .. ' over ' .. thresholdValue)
     return combinedLoad > toNumber0(thresholdValue)
 end 
 
@@ -1414,12 +1413,10 @@ function setCheckbox(key, newState)
     else 
         char = ""
     end
-    log('set checkbox')
     ref_buttonData.checkbox[key].state = newState
     i = getIndex(ref_buttonData.checkbox, key, checkboxButtonStartIndex)
     self.editButton({index=i, label=char})
-    log ('set checkbox done')
-   
+    
 end 
 
 --Checks or unchecks the given box

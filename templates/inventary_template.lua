@@ -215,13 +215,13 @@ defaultButtonData = {
             value     = "0",
             alignment = 3
         },
-        --
+        --inventory name
         {
             pos       = {0.460,0.1,-1.9},
             rows      = 1,
             width     = 5400,
             font_size = 550,
-            label     = "0/0/0/0",
+            label     = "Batoh",
             value     = "",
             alignment = 3
         }
